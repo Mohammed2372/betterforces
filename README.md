@@ -54,3 +54,59 @@ Automatically identifies problematic topics:
 ## Technical Approach
 
 RESTful API that receives data through the public Codeforces API and provides processed analytics.
+
+## Architecture (MVP)
+
+- **Backend-only**: No frontend in this repository
+- **Redis-only storage**: No persistent database for MVP
+- **On-demand data sync**: Fetches data from Codeforces when needed (if stale >4 hours)
+- **Clean Architecture**: Separated into layers (api/, domain/, infrastructure/, services/)
+
+## Project Structure
+
+```
+betterforces/
+├── sources/                      # All source code
+│   ├── api/                      # API layer
+│   │   ├── app.py                # FastAPI application
+│   │   ├── routes/               # Route handlers
+│   │   ├── schemas/              # Pydantic schemas
+│   │   └── deps.py               # Dependencies
+│   ├── domain/                   # Business logic layer
+│   │   ├── models/               # Data models
+│   │   ├── services/             # Business services
+│   │   └── repositories/         # Data access repositories
+│   ├── infrastructure/           # Infrastructure layer
+│   │   ├── codeforces_client.py  # Codeforces API client
+│   │   └── redis_client.py       # Redis cache client
+│   ├── services/                 # Application services
+│   │   └── sync_service.py       # Data synchronization service
+│   ├── config.py                 # Application configuration
+│   └── main.py                   # Entry point
+├── tests/                        # Unit and integration tests
+├── README.md                     # This file
+├── requirements.txt              # Python dependencies
+└── LICENSE                       # License
+```
+
+## API Endpoints (MVP)
+
+Base URL: `/` (no `/api/users/` prefix)
+
+### Comfort Zone
+- `GET /comfort-zone/{handle}` - Get user's comfort zone range
+
+### Velocity
+- `GET /velocity/{handle}` - Get solving velocity metrics
+
+### Progression
+- `GET /progression/{handle}` - Get difficulty progression over time
+
+### Distribution
+- `GET /rating-distribution/{handle}` - Get rating distribution over time
+
+### Tags
+- `GET /tags/{handle}` - Get average rating by tags
+- `GET /tags/{handle}/weak` - Get weak tags analysis
+
+**Response format**: JSON with analytics data and metadata (last_updated, cache_status)
