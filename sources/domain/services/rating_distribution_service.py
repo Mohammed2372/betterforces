@@ -1,9 +1,8 @@
 """Rating distribution service for analyzing solved problems over time."""
 
-from typing import List, Set, Dict
-from datetime import datetime, timedelta
+from typing import List
 
-from sources.domain.models.codeforces import Submission, SubmissionStatus
+from sources.domain.models.codeforces import Submission
 from sources.domain.models.rating_distribution import RatingPoint, RatingDistribution
 
 

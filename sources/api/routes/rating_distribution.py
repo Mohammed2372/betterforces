@@ -1,7 +1,6 @@
 """Rating distribution API routes."""
 
 from datetime import datetime
-from typing import Dict, Any
 
 from litestar import Controller, get
 from litestar.response import Response
@@ -12,8 +11,7 @@ from litestar.params import Parameter
 from typing import Optional
 
 from sources.api.deps import codeforces_data_service_dependency, rating_distribution_service_dependency
-from sources.api.schemas.rating_distribution import RatingDistributionResponse, RatingPointSchema
-from sources.api.schemas.common import ErrorResponse
+from sources.api.schemas.rating_distribution import RatingPointSchema
 from sources.services.codeforces_data_service import CodeforcesDataService
 from sources.domain.services.rating_distribution_service import RatingDistributionService
 from sources.infrastructure.codeforces_client import CodeforcesAPIError

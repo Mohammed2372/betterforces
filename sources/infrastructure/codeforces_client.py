@@ -1,7 +1,7 @@
 """Codeforces API client for BetterForces."""
 
 import httpx
-from typing import List, Optional, Dict, Any
+from typing import List, Dict, Any
 import json
 from sources.config import settings
 from sources.domain.models.codeforces import Submission, Problem, SubmissionStatus
@@ -73,7 +73,8 @@ class CodeforcesClient:
                     contest_id=raw_problem.get("contestId", 0),
                     index=raw_problem.get("index", ""),
                     name=raw_problem.get("name", ""),
-                    rating=raw_problem.get("rating")
+                    rating=raw_problem.get("rating"),
+                    tags=raw_problem.get("tags", [])
                 )
 
                 # Parse verdict
@@ -95,7 +96,7 @@ class CodeforcesClient:
 
                 submissions.append(submission)
 
-            except (KeyError, TypeError) as e:
+            except (KeyError, TypeError):
                 # Skip malformed submissions
                 continue
 

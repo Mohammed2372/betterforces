@@ -1,6 +1,6 @@
 """Codeforces API domain models."""
 
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 from enum import Enum
 
@@ -22,6 +22,7 @@ class Problem(BaseModel):
     index: str
     name: str
     rating: Optional[int] = None
+    tags: List[str] = []
 
     @property
     def problem_key(self) -> str:

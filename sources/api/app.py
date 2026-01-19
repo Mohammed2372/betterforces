@@ -1,6 +1,5 @@
 """Litestar application configuration."""
 
-import redis.asyncio as redis
 import logging
 
 from litestar import Litestar
