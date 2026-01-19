@@ -14,12 +14,8 @@ from sources.config import settings
 def create_app() -> Litestar:
     """Create and configure the Litestar application."""
 
-    # Configure logging - suppress noisy httpx and redis logs
+    # Configure logging
     logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-    # Suppress httpx and redis connection logs as they're too verbose
-    logging.getLogger("httpx").setLevel(logging.WARNING)
-    logging.getLogger("redis").setLevel(logging.WARNING)
 
     # Configure stores (using RedisStore for production caching)
     stores = {
