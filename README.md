@@ -19,32 +19,26 @@ Help competitive programmers and their coaches:
 
 ## Core Features
 
-### 1. Difficulty Progression
-Shows growth in the level of solved problems:
-- Average rating of solved problems by periods (month, quarter)
-- Graph of average problem rating changes over time
-- Rate of difficulty growth (how much problem rating increases per month)
-
-### 2. Difficulty Distribution
+### 1. Difficulty Distribution
 Analyzes the distribution of solved problems by difficulty levels:
 - Groups solved problems into rating bins (800, 900, 1000, 1100, etc.)
 - Shows the count of solved problems in each bin
 - Helps understand problem-solving patterns across different difficulty ranges
 
-### 3. Abandoned Problems Analysis
+### 2. Abandoned Problems Analysis
 Identifies problems user attempted but never solved:
 - Groups failed attempts by tags to find problematic topics
 - Groups failed attempts by rating bins to identify difficulty thresholds
 - Provides insights into knowledge gaps and areas needing more practice
 
-### 4. Average Rating by Tag
+### 3. Average Rating by Tag
 For each tag (dp, graphs, greedy, math, etc.) calculates:
 - Average rating of all solved problems with this tag
 - Median rating for more robust analysis
 - Number of solved problems by tag
 - Percentile relative to the overall average problem rating
 
-### 5. Weak Tags Detection
+### 4. Weak Tags Detection
 Automatically identifies problematic topics:
 - Finds tags where the average rating of solved problems is significantly lower (e.g., 200+ points) than the overall average
 - Ranks weak tags by degree of lag
@@ -91,12 +85,6 @@ betterforces/
 ## API Endpoints
 
 Base URL: `/`
-
-### Difficulty Progression
-- `GET /difficulty-progression/{handle}` - Get difficulty progression metrics over time, including average ratings by period and growth rates
-
-### Rating Distribution
-- `GET /rating-distribution/{handle}` - Get paginated list of user's solved problem submissions with rating and submission time, optionally filtered by date range
 
 ### Difficulty Distribution
 - `GET /difficulty-distribution/{handle}` - Get problem distribution by difficulty levels (800, 900, 1000...), showing count of solved problems in each bin

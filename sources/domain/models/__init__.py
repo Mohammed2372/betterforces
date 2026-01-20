@@ -9,7 +9,6 @@ from .abandoned_problems import (
     TagAbandonedStats,
 )
 from .difficulty_distribution import DifficultyDistribution, RatingRange
-from .rating_distribution import RatingDistribution, RatingPoint
 
 __all__ = [
     "AbandonedProblem",
@@ -18,8 +17,6 @@ __all__ = [
     "DifficultyDistribution",
     "Problem",
     "RatingAbandonedStats",
-    "RatingDistribution",
-    "RatingPoint",
     "RatingRange",
     "Submission",
     "SubmissionStatus",
