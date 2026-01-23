@@ -50,7 +50,7 @@ RESTful API that receives data through the public Codeforces API and provides pr
 
 ## Architecture
 
-- **Backend-only**: No frontend in this repository
+- **Monorepo**: Backend (Python/Litestar) + Frontend (React/TypeScript)
 - **Redis storage**: Used for rate limiting, no data persistence for MVP
 - **On-demand data fetching**: Fetches fresh data from Codeforces API for each request
 - **Clean Architecture**: Separated into layers (api/, domain/, infrastructure/, services/)
@@ -59,7 +59,7 @@ RESTful API that receives data through the public Codeforces API and provides pr
 
 ```
 betterforces/
-├── sources/                      # All source code
+├── backend/                      # Backend source code
 │   ├── api/                      # API layer
 │   │   ├── app.py                # Litestar application
 │   │   ├── routes/               # Route handlers
@@ -75,9 +75,14 @@ betterforces/
 │   │   └── codeforces_data_service.py  # Data synchronization service
 │   ├── config.py                 # Application configuration
 │   └── main.py                   # Entry point
+├── frontend/                     # Frontend source code (React + TypeScript)
+│   ├── src/                      # Source files
+│   ├── public/                   # Static assets
+│   └── package.json              # Node.js dependencies
 ├── tests/                        # Unit and integration tests
 ├── pyproject.toml                # Python dependencies and project configuration
 ├── uv.lock                       # UV lock file
+├── docker-compose.yml            # Docker Compose configuration
 ├── README.md                     # This file
 └── LICENSE                       # License
 ```
@@ -98,3 +103,121 @@ Base URL: `/`
 - `GET /tag-ratings/{handle}/weak` - Get weak tag ratings analysis with threshold-based filtering
 
 **Response format**: JSON with analytics data and metadata
+
+## Getting Started
+
+### Prerequisites
+
+- **Docker & Docker Compose** (recommended) OR
+- **Python 3.13+** with `uv` package manager
+- **Node.js 20+** with `npm`
+- **Redis** (for backend)
+
+### Quick Start with Docker
+
+The easiest way to run the entire stack:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/betterforces.git
+cd betterforces
+
+# Copy environment variables
+cp .env.example .env
+
+# Start all services (backend, frontend, redis)
+docker-compose up -d
+
+# Access the application
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:8000
+# API Docs: http://localhost:8000/schema
+```
+
+### Local Development
+
+#### Backend Setup
+
+```bash
+# Install UV package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install dependencies
+uv sync
+
+# Start Redis (using Docker)
+docker run -d -p 6379:6379 redis:7-alpine
+
+# Run backend server
+uv run uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Backend will be available at `http://localhost:8000`
+
+#### Frontend Setup
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Frontend will be available at `http://localhost:3000`
+
+### Configuration
+
+Backend configuration via `.env` file:
+
+```bash
+# Redis
+REDIS_URL=redis://localhost:6379/0
+
+# Codeforces API
+CODEFORCES_API_BASE=https://codeforces.com/api
+
+# Cache settings
+CACHE_TTL=14400  # 4 hours
+
+# Rate limiting
+RATE_LIMIT_REQUESTS=100
+RATE_LIMIT_PERIOD=hour
+
+# CORS (for local development)
+CORS_ALLOWED_ORIGINS=["http://localhost:3000"]
+```
+
+### Usage
+
+1. Open the frontend at `http://localhost:3000`
+2. Enter a Codeforces handle (e.g., `tourist`, `Petr`, `Errichto`)
+3. Click "Analyze" to fetch and visualize metrics
+4. Explore the different charts:
+   - **Difficulty Distribution**: See which rating ranges you solve most
+   - **Tag Ratings**: Understand your strengths across different topics
+   - **Weak Tags**: Identify areas that need more practice
+   - **Abandoned Problems**: Find patterns in problems you gave up on
+
+### API Documentation
+
+Interactive API documentation is available at:
+- **Swagger UI**: `http://localhost:8000/schema/swagger`
+- **ReDoc**: `http://localhost:8000/schema/redoc`
+- **OpenAPI JSON**: `http://localhost:8000/schema/openapi.json`
+
+### Building for Production
+
+```bash
+# Build frontend
+cd frontend
+npm run build
+
+# Build Docker images
+docker-compose build
+
+# Run production stack
+docker-compose up -d
+```
