@@ -65,9 +65,9 @@ class CodeforcesClient:
                 if "handle: User with handle" in comment and ("not found" in comment or "does not exist" in comment):
                     raise UserNotFoundError(f"User '{handle}' not found on Codeforces")
                 # Check for specific error messages indicating user not found
-            if "User with handle" in comment and ("not found" in comment or "does not exist" in comment or "does not have" in comment):
-                raise UserNotFoundError(f"User '{handle}' not found on Codeforces")
-            raise CodeforcesAPIError(f"API returned status: {status}. Comment: {comment}", response.status_code)
+                if "User with handle" in comment and ("not found" in comment or "does not exist" in comment or "does not have" in comment):
+                    raise UserNotFoundError(f"User '{handle}' not found on Codeforces")
+                raise CodeforcesAPIError(f"API returned status: {status}. Comment: {comment}", response.status_code)
 
             # Empty result means no submissions, but user exists
             return self._parse_submissions(result)
