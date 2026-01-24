@@ -3,10 +3,8 @@ import { Header } from './components/layout/Header';
 import { StatCard } from './components/layout/StatCard';
 import { AbandonedProblemsChart } from './components/charts/AbandonedProblemsChart';
 import { DifficultyDistributionChart } from './components/charts/DifficultyDistributionChart';
-import { DifficultyRadarChart } from './components/charts/DifficultyRadarChart';
 import { TagsChart } from './components/charts/TagsChart';
 import { TagsRadarChart } from './components/charts/TagsRadarChart';
-import { AbandonedProblemsRadarChart } from './components/charts/AbandonedProblemsRadarChart';
 import { codeforcesApi } from './services/api';
 import type {
   AbandonedProblemByTagsResponse,
@@ -89,7 +87,7 @@ function App() {
         {!loading && !error && difficultyDist && tagRatings && (
           <>
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               <StatCard
                 title="Total Solved"
                 value={difficultyDist.total_solved}
@@ -110,17 +108,9 @@ function App() {
               />
             </div>
 
-            {/* Difficulty Distribution - Bar Chart */}
+            {/* Difficulty Distribution */}
             <div className="bg-white rounded-lg shadow-md p-6 mb-8">
               <DifficultyDistributionChart
-                ranges={difficultyDist.ranges}
-                totalSolved={difficultyDist.total_solved}
-              />
-            </div>
-
-            {/* Difficulty Distribution - Radar Chart */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-              <DifficultyRadarChart
                 ranges={difficultyDist.ranges}
                 totalSolved={difficultyDist.total_solved}
               />
@@ -140,39 +130,17 @@ function App() {
               />
             </div>
 
-            {/* Abandoned Problems by Tags - Bar Chart */}
+            {/* Abandoned Problems by Tags */}
             {abandonedByTags && abandonedByTags.tags.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-6 mb-8">
                 <AbandonedProblemsChart data={abandonedByTags.tags} type="tags" />
               </div>
             )}
 
-            {/* Abandoned Problems by Tags - Radar Chart */}
-            {abandonedByTags && abandonedByTags.tags.length > 0 && (
-              <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-                <AbandonedProblemsRadarChart
-                  data={abandonedByTags.tags}
-                  type="tags"
-                  totalAbandoned={abandonedByTags.total_abandoned_problems}
-                />
-              </div>
-            )}
-
-            {/* Abandoned Problems by Ratings - Bar Chart */}
+            {/* Abandoned Problems by Ratings */}
             {abandonedByRatings && abandonedByRatings.ratings.length > 0 && (
               <div className="bg-white rounded-lg shadow-md p-6 mb-8">
                 <AbandonedProblemsChart data={abandonedByRatings.ratings} type="ratings" />
-              </div>
-            )}
-
-            {/* Abandoned Problems by Ratings - Radar Chart */}
-            {abandonedByRatings && abandonedByRatings.ratings.length > 0 && (
-              <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-                <AbandonedProblemsRadarChart
-                  data={abandonedByRatings.ratings}
-                  type="ratings"
-                  totalAbandoned={abandonedByRatings.total_abandoned_problems}
-                />
               </div>
             )}
           </>

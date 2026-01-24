@@ -4,7 +4,6 @@ import type {
   AbandonedProblemByRatingsResponse,
   DifficultyDistributionResponse,
   TagsResponse,
-  WeakTagsResponse,
 } from '../types/api';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
@@ -47,11 +46,4 @@ export const codeforcesApi = {
     return response.data;
   },
 
-  getWeakTagRatings: async (handle: string, threshold: number = 200) => {
-    const response = await apiClient.get<WeakTagsResponse>(
-      `/tag-ratings/${handle}/weak`,
-      { params: { threshold } }
-    );
-    return response.data;
-  },
 };

@@ -50,11 +50,3 @@ export interface TagsResponse {
   last_updated: string;
 }
 
-export interface WeakTagsResponse {
-  weak_tags: TagInfo[];
-  overall_average_rating: number;
-  overall_median_rating: number;
-  total_solved: number;
-  threshold_used: number;
-  last_updated: string;
-}
