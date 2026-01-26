@@ -1,15 +1,10 @@
 # BetterForces
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
+![Python 3.13](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
 ![Litestar](https://img.shields.io/badge/Litestar-green?style=for-the-badge&logo=lightning)
-![UV](https://img.shields.io/badge/UV-red?style=for-the-badge&logo=python)
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-blue?style=for-the-badge&logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-yellow?style=for-the-badge&logo=vite)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-cyan?style=for-the-badge&logo=tailwind-css)
-![Chart.js](https://img.shields.io/badge/Chart.js-red?style=for-the-badge&logo=chartjs)
-![Node.js](https://img.shields.io/badge/Node.js-20+-green?style=for-the-badge&logo=node.js)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensource)
+![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensource)
 
 **API for analyzing Codeforces profiles that provides useful statistics for improving competitive programming skills.**
 
