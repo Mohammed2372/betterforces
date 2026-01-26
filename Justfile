@@ -1,49 +1,28 @@
-# List available commands
+# List all available commands
 default:
     @just --list
 
-# Build services
+# Build Docker images
 build:
     docker compose build
 
-# Start services
+# Start all services
 up:
     docker compose up -d
 
-# Stop services
+# Stop all services
 down:
     docker compose down
 
-# Restart services
+# Restart all services
 restart:
     just down
     just up
 
-# View logs
+# Show last 250 lines of logs
 logs:
     docker compose logs --tail=250
 
-# Clean up
+# Stop services and remove volumes/images
 clean:
     docker compose down -v --rmi local
-    rm -rf .pytest_cache .ruff_cache .venv build dist *.egg-info
-
-# Run tests
-test:
-    uv run pytest
-
-# Format code
-format:
-    uv run ruff format .
-
-# Run linting
-lint:
-    uv run ruff check .
-
-# Run linting with auto-fix
-lintfix:
-    uv run ruff check --fix .
-
-# Run type checking
-typecheck:
-    uv run ty check
