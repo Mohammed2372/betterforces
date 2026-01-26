@@ -10,7 +10,7 @@ from backend.domain.models.codeforces import Submission, Problem, SubmissionStat
 class CodeforcesAPIError(Exception):
     """Exception raised when Codeforces API returns an error."""
 
-    def __init__(self, message: str, status_code: int = None):
+    def __init__(self, message: str, status_code: int | None = None):
         super().__init__(message)
         self.status_code = status_code
 

@@ -51,6 +51,6 @@ def create_app() -> Litestar:
             title="BetterForces API",
             version="1.0.0",
             description="API for Codeforces profile analysis",
-            root_schema_site="element",
+            root_schema_site="elements",
         ),
     )
