@@ -1,0 +1,26 @@
+default:
+    @just --list
+
+install:
+    npm install
+
+dev:
+    npm run dev
+
+build:
+    npm run build
+
+preview:
+    npm run preview
+
+lint:
+    npm run lint
+
+lintfix:
+    npm run lint -- --fix
+
+typecheck:
+    npx tsc --noEmit
+
+clean:
+    rm -rf dist node_modules .vite
