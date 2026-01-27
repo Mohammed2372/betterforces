@@ -116,9 +116,7 @@ def test_codeforces_api_error_message_formatting():
     comment = "handle: User with handle test not found"
     status_code = 400
 
-    error = CodeforcesAPIError(
-        f"API returned status: {status}. Comment: {comment}", status_code
-    )
+    error = CodeforcesAPIError(f"API returned status: {status}. Comment: {comment}", status_code)
 
     assert "FAILED" in str(error)
     assert "not found" in str(error)
