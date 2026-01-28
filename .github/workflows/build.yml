@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build and Start Services
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Build and start services
+        run: just build && just up
+
+      - name: Health check
+        run: curl -f http://localhost:8000/schema/openapi.json
+
+      - name: Stop services
+        if: always()
+        run: just down
