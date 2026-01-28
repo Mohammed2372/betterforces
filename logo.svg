@@ -22,7 +22,7 @@
   </defs>
 
   <!-- Bar chart representing analytics (centered and enlarged) -->
-  <g transform="translate(30, 30)">
+  <g transform="translate(25, 30)">
     <!-- Bar 1 -->
     <rect x="0" y="90" width="30" height="50" fill="url(#barGradient1)" rx="6"/>
 
@@ -37,7 +37,7 @@
   </g>
 
   <!-- Trend line showing improvement -->
-  <path d="M 42 145 L 77 115 L 117 85 L 157 55"
+  <path d="M 37 145 L 72 115 L 112 85 L 152 55"
         stroke="#ffd700"
         stroke-width="5"
         stroke-linecap="round"
@@ -47,9 +47,9 @@
 
   <!-- Stars for achievements (enlarged) -->
   <g fill="#ffd700" filter="url(#glow)">
-    <circle cx="157" cy="55" r="6"/>
-    <circle cx="168" cy="48" r="4"/>
-    <circle cx="173" cy="60" r="3"/>
-    <circle cx="165" cy="65" r="2.5"/>
+    <circle cx="152" cy="55" r="6"/>
+    <circle cx="163" cy="48" r="4"/>
+    <circle cx="168" cy="60" r="3"/>
+    <circle cx="160" cy="65" r="2.5"/>
   </g>
 </svg>
