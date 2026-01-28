@@ -150,7 +150,23 @@ function App() {
       <footer className="bg-gray-800 text-white py-6 mt-12">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-300">
-            Built with React, TypeScript, and Chart.js | Data from Codeforces API
+            <a
+              href="https://github.com/deyna256/betterforces"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cf-blue transition-colors underline"
+            >
+              GitHub
+            </a>
+            {' | Data from '}
+            <a
+              href="https://codeforces.com/apiHelp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cf-blue transition-colors underline"
+            >
+              Codeforces API
+            </a>
           </p>
         </div>
       </footer>
